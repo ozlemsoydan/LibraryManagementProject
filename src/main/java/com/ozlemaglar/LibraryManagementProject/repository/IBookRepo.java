@@ -8,7 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface IBookRepo extends JpaRepository<Book,Long> {
+public interface IBookRepo extends JpaRepository<Book, Long> {
 
-        Page<Book> getAllByBookName(Pageable pageable);
+    @Query("select b from Book b")
+    Page<Book> getAllByBookName(Pageable pageable);
 }

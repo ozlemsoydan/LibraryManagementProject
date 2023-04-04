@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class BookService implements IBookService {
+public class BookService implements IBaseService<Book> {
 
     private final IBookRepo bookRepo;
 
@@ -19,14 +19,16 @@ public class BookService implements IBookService {
         this.bookRepo = bookRepo;
     }
 
+
     @Override
     public Book save(Book book) {
         bookRepo.save(book);
         return book;
     }
 
-    @Override
-    public Page<Book> getAllBooks(int page, int size) {
+
+
+    public Page<Book> getAll(int page, int size) {
         Pageable pageable = PageRequest.of(page,size);
         return bookRepo.findAll(pageable);
     }

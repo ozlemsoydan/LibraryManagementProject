@@ -2,10 +2,12 @@ package com.ozlemaglar.LibraryManagementProject.entity;
 
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@Data
 @Entity
 @Table(name = "publisher")
 public class Publisher {

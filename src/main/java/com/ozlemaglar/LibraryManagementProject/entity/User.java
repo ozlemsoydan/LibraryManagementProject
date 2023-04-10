@@ -16,8 +16,10 @@ public class User {
     @Column(name = "last_name")
     private String lastName;
 
+    @Column(name = "email", nullable = true)
     private String email;
 
+    @Column(name = "password", nullable = true)
     private String password;
 
 }

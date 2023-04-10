@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/category")
@@ -27,8 +28,8 @@ public class CategoryController {
     }
 
     @GetMapping("/find/{id}")
-    public Category find(@PathVariable(value = "id") Long id) {
-        return categoryService.find(id).get();
+    public Optional<Category> find(@PathVariable(value = "id") Long id) {
+        return categoryService.find(id);
     }
 
     @PutMapping("/update/{id}")

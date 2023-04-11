@@ -1,11 +1,13 @@
 package com.ozlemaglar.LibraryManagementProject.controller;
 
+import com.ozlemaglar.LibraryManagementProject.DTO.BookDTOResponse;
 import com.ozlemaglar.LibraryManagementProject.entity.Book;
 import com.ozlemaglar.LibraryManagementProject.services.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -44,8 +46,8 @@ public class BookController {
 
 
     @GetMapping("/search")
-    public Page<Book> search(@RequestParam(value = "page") int page, @RequestParam(value = "size") int size,
-                             @RequestParam (value = "searchText") String searchText) {
+    public List<BookDTOResponse> search(@RequestParam(value = "page") int page, @RequestParam(value = "size") int size,
+                                        @RequestParam (value = "searchText") String searchText) {
 
         return bookService.search(page,size, searchText);
     }

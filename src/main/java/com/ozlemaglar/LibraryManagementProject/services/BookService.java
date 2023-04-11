@@ -14,6 +14,7 @@ import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -74,22 +75,19 @@ public class BookService implements IBaseService<Book> {
     }
 
 
-    public Page<Book> search(int page, int size, String searchText) {
+    public List<BookDTOResponse> search(int page, int size, String searchText) {
 
-        String url = googleBookApiUrl + searchText;
+        String url = googleBookApiUrl +"q=" + searchText + "&maxresults="+size +"&startIndex="+((page*size)-size);
 
         ResponseEntity<BookDTOResponse> response = getRestTemplate().getForEntity(url, BookDTOResponse.class);
 
-        //TODO: response'da dönen selftLink alanı ile yeni bir istek gönderilip, her kitap için detaylı bilgiler getirilecek
-        //TODO: Modellerin düzenlenmesi gerekebilir. Eklenecek özelliğe göre karar verilmeli
+        // response'da dönen selftLink alanı ile yeni bir istek gönderilip, her kitap için detaylı bilgiler getirilecek
+        //Modellerin düzenlenmesi gerekebilir. Eklenecek özelliğe göre karar verilmeli
 
-
-
-        Pageable pageable=PageRequest.of(page,size);
-        return (Page<Book>) pageable;
+        return (List<BookDTOResponse>) response;
     }
 
-    private RestTemplate getRestTemplate(){
+    private RestTemplate getRestTemplate() {
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.setRequestFactory(new SimpleClientHttpRequestFactory());
         SimpleClientHttpRequestFactory rf = (SimpleClientHttpRequestFactory) restTemplate

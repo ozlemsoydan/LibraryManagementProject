@@ -5,12 +5,12 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
 
     @Column(name = "first_name")
     private String firstName;
@@ -18,7 +18,8 @@ public class User {
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "email", nullable = true)
+
+    @Column(name = "email", nullable = true, unique = true)
     private String email;
 
     @Column(name = "password", nullable = true)

@@ -19,8 +19,8 @@ import java.util.Set;
 public class Category {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String  id;
 
     @Column(name = "name", length = 50, nullable = false)
     private String name;

@@ -23,13 +23,13 @@ public class BookController {
     }
 
 
-    @GetMapping("/")
+    @GetMapping
     public Page<Book> getAll(@RequestParam(value = "page", required = true) int page, @RequestParam(value = "size", required = true) int size) {
         return bookService.getAll(page,size);
     }
 
     @GetMapping("/{id}")
-    public Optional<Book> find(@PathVariable(value = "id") Long id) {
+    public Optional<Book> find(@PathVariable(value = "id") String id) {
         return bookService.find(id);
     }
 
@@ -40,7 +40,7 @@ public class BookController {
 
 
     @DeleteMapping("/delete/{id}")
-    public Boolean delete(@PathVariable(value = "id", required = true) Long id) {
+    public Boolean delete(@PathVariable(value = "id", required = true) String id) {
         return bookService.delete(id);
     }
 

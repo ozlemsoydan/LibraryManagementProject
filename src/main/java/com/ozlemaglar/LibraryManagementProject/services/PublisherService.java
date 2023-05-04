@@ -28,13 +28,13 @@ public class PublisherService implements IBaseService<Publisher> {
 
 
     @Override
-    public Optional<Publisher> find(Long id) {
+    public Optional<Publisher> find(String id) {
         return publisherRepo.findById(id);
     }
 
     @Override
     public Publisher update(Publisher publisher) {
-        if (StringUtils.isNotEmpty(publisher.getId().toString())) {
+        if (StringUtils.isNotEmpty(publisher.getId())) {
             Optional<Publisher> optionalPublisher = publisherRepo.findById(publisher.getId());
             if (optionalPublisher.isPresent()) {
                 publisherRepo.save(publisher);
@@ -46,7 +46,7 @@ public class PublisherService implements IBaseService<Publisher> {
     }
 
     @Override
-    public Boolean delete(Long id) {
+    public Boolean delete(String id) {
         Optional<Publisher> optionalPublisher = publisherRepo.findById(id);
         if (optionalPublisher.isPresent()) {
             publisherRepo.deleteById(id);

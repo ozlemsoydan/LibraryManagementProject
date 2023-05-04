@@ -23,13 +23,13 @@ public class PublisherController {
         return publisher;
     }
 
-    @GetMapping("/")
+    @GetMapping
     public List<Publisher> getAll(){
         return publisherService.getAll();
     }
 
     @GetMapping("/find/{id}")
-    public Optional<Publisher> find(@PathVariable(value = "id") Long id) {
+    public Optional<Publisher> find(@PathVariable(value = "id") String id) {
         return publisherService.find(id);
     }
 
@@ -39,7 +39,7 @@ public class PublisherController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public Boolean delete(@PathVariable(value = "id") Long id) {
+    public Boolean delete(@PathVariable(value = "id") String id) {
         return publisherService.delete(id);
     }
 

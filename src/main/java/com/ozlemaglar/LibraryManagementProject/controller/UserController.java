@@ -22,13 +22,13 @@ public class UserController {
         return userService.save(user);
     }
 
-    @GetMapping("/")
+    @GetMapping
     public List<User> getAll(){
         return userService.getAll();
     }
 
     @GetMapping("/find/{id}")
-    public Optional<User> find(@PathVariable(value = "id") Long id){
+    public Optional<User> find(@PathVariable(value = "id") String id){
         return userService.find(id);
     }
 
@@ -38,7 +38,7 @@ public class UserController {
     }
 
     @DeleteMapping("/delete{id}")
-    public Boolean delete(@PathVariable(value = "id") Long id){
+    public Boolean delete(@PathVariable(value = "id") String id){
         return userService.delete(id);
     }
 }

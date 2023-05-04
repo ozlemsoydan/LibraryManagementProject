@@ -29,13 +29,13 @@ public class CategoryService implements IBaseService<Category> {
     }
 
     @Override
-    public Optional<Category> find(Long id) {
+    public Optional<Category> find(String id) {
         return categoryRepo.findById(id);
     }
 
     @Override
     public Category update(Category category) {
-        if (StringUtils.isNotEmpty(category.getId().toString())) {
+        if (StringUtils.isNotEmpty(category.getId())) {
            Optional<Category> optionalCategory = categoryRepo.findById(category.getId());
 
             if (optionalCategory.isPresent()) {
@@ -49,7 +49,7 @@ public class CategoryService implements IBaseService<Category> {
 
 
     @Override
-    public Boolean delete(Long id) {
+    public Boolean delete(String id) {
         Optional<Category> optionalCategory = categoryRepo.findById(id);
         if (optionalCategory.isPresent()) {
             categoryRepo.deleteById(id);

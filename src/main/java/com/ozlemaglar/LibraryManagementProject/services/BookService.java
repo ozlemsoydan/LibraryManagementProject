@@ -42,14 +42,14 @@ public class BookService implements IBaseService<Book> {
     }
 
     @Override
-    public Optional<Book> find(Long id) {
+    public Optional<Book> find(String id) {
         Optional<Book> optionalBook = bookRepo.findById(id);
         return optionalBook;
     }
 
     @Override
     public Book update(Book book) {
-        if (StringUtils.isNotEmpty(book.getId().toString())) {
+        if (StringUtils.isNotEmpty(book.getId())) {
             Optional<Book> optionalBook = bookRepo.findById(book.getId());
 
             if (optionalBook.isPresent()) {
@@ -62,7 +62,7 @@ public class BookService implements IBaseService<Book> {
     }
 
     @Override
-    public Boolean delete(Long id) {
+    public Boolean delete(String id) {
 
         Optional<Book> optionalBook = bookRepo.findById(id);
         if (optionalBook.isPresent()) {

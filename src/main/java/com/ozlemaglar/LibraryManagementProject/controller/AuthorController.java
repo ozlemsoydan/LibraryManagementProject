@@ -21,13 +21,13 @@ public class AuthorController {
         return author;
     }
 
-    @GetMapping("/")
+    @GetMapping
     public List<Author> getAll(){
         return authorService.getAll();
     }
 
     @GetMapping("/find/{id}")
-    public Author find(@PathVariable(value = "id") Long id) {
+    public Author find(@PathVariable(value = "id") String id) {
         return authorService.find(id).get();
     }
 
@@ -37,7 +37,7 @@ public class AuthorController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public Boolean delete(@PathVariable(value = "id") Long id) {
+    public Boolean delete(@PathVariable(value = "id") String id) {
         return authorService.delete(id);
     }
 

@@ -8,10 +8,10 @@ public interface IBaseService<T> {
 
      T save(T entity);
 
-     Optional<T> find(Long id);
+     Optional<T> find(String id);
 
      T update(T entity);
 
-     Boolean delete(Long id);
+     Boolean delete(String id);
 
 }

@@ -32,14 +32,14 @@ public class AuthorService implements IBaseService<Author> {
     }
 
     @Override
-    public Optional<Author> find(Long id) {
+    public Optional<Author> find(String id) {
         Optional<Author> optionalAuthor = authorRepo.findById(id);
         return optionalAuthor;
     }
 
     @Override
     public Author update(Author author) {
-        if (StringUtils.isNotEmpty(author.getId().toString())) {
+        if (StringUtils.isNotEmpty(author.getId())) {
             Optional<Author> optionalAuthor = authorRepo.findById(author.getId());
 
             if (optionalAuthor.isPresent()) {
@@ -52,7 +52,7 @@ public class AuthorService implements IBaseService<Author> {
     }
 
     @Override
-    public Boolean delete(Long id) {
+    public Boolean delete(String id) {
         Optional<Author> optionalAuthor = authorRepo.findById(id);
         if (optionalAuthor.isPresent()) {
             authorRepo.deleteById(id);

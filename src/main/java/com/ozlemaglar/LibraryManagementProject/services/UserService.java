@@ -27,13 +27,13 @@ public class UserService implements IBaseService<User>{
     }
 
     @Override
-    public Optional<User> find(Long id) {
+    public Optional<User> find(String id) {
         return userRepo.findById(id);
     }
 
     @Override
     public User update(User user) {
-        if (StringUtils.isNotEmpty(user.getId().toString())) {
+        if (StringUtils.isNotEmpty(user.getId())) {
             Optional<User> optionalUser = userRepo.findById(user.getId());
 
             if (optionalUser.isPresent()) {
@@ -46,7 +46,7 @@ public class UserService implements IBaseService<User>{
     }
 
     @Override
-    public Boolean delete(Long id) {
+    public Boolean delete(String id) {
         Optional<User> optionalUser = userRepo.findById(id);
         if (optionalUser.isPresent()) {
         userRepo.deleteById(id);
